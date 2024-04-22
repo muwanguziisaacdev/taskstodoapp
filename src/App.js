@@ -4,8 +4,11 @@ import CONTENT from './Content';
 import FOOTER from './Footer';
 import React, { useState } from 'react'
 import ADDTASK from './AddTask';
+import SEARCHTASK from './searchTask';
+
 function App() {
   const [add, setAdd] = useState('');
+  const [search, setSearch] = useState('');
   const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("tasklist")) || []);
 //HANDLING THE DELETE AND THE CHECK TASKS 
 const handleDelete = (id)=>{
@@ -16,6 +19,7 @@ const handleCheck = (id)=> {
     const tasklist = tasks.map((task)=>task.id === id ? { ...task, checked: !task.checked} : task);
     setAndsave(tasklist)
 }
+ 
 const setAndsave = (task)=>{
   setTasks(task)
   localStorage.setItem('tasklist', JSON.stringify(task));
@@ -39,10 +43,13 @@ const handleSubmit = (e)=>{
     add = {add}
     setAdd = {setAdd}
     handleSubmit = {handleSubmit}
-
+    />
+    <SEARCHTASK
+    search={search}
+    setSearch={setSearch}
     />
     <CONTENT
-    tasks = {tasks} 
+    tasks = {tasks.filter(task => ((task.task).toLowerCase()).includes(search.toLowerCase()))} 
     handleCheck = {handleCheck}
     handleDelete = {handleDelete}
     />
