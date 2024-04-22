@@ -1,42 +1,34 @@
-import React, { useState } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash} from '@fortawesome/free-solid-svg-icons'; 
 
-const CONTENT = () => {
-    const [items, setItems] = useState([
-        {
-            id: 1,
-            checked: true,
-            item: 'WakeUp'
-        },
-        {
-            id: 2,
-            checked: false,
-            item: 'Workout'
-        },
-        {
-            id: 3,
-            checked: false,
-            item: 'Read'
-        }
-    ])
+const CONTENT = ( {tasks, handleCheck, handleDelete}) => {
+
   return (
     <main>
-        <ul className='listItems'>
-            {items.map((item)=>(
-                <li className='itemlist' key={item.id}>
-                    <label className='container'>
-                        <input type="checkbox" checked = {item.checked} />
-                        <div className="checkmark"></div>
-                    </label>
-                    <label className='item-name'>{item.item}</label>
-                <button className='deleteButton'>
-                    <FontAwesomeIcon icon={faTrash} className='delete-icon'/>
-                </button>
-                </li>
-            ))}
-        </ul>
+        {tasks.length?
+            <ul className='listtasks'>
+                {tasks.map((task)=>(
+                    <li className='itemlist' key={task.id}>
+                        <label className='container'>
+                            <input 
+                            type="checkbox" 
+                            checked = {task.checked}  
+                            onChange={()=>handleCheck(task.id)}
+                            />
+                            <div className="checkmark"></div>
+                        </label>
+                        <label className='item-name'>{task.task}</label>
+                    <button className='deleteButton'>
+                        <FontAwesomeIcon icon={faTrash} className='delete-icon'
+                        onClick={()=>handleDelete(task.id)}
+                        />
+                    </button>
+                    </li>
+                    ))
+                }
+            </ul>: 
+        <h1 className='no-items'>Empty</h1>}
     </main>
   )
 }

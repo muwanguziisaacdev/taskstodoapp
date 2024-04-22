@@ -1,9 +1,10 @@
 import React from 'react'
 
-const FOOTER = () => {
+const FOOTER = ( {tasks}) => {
+  const taskLength = tasks.length
   return (
     <footer>
-        <h2>NUMBER OF TASKS</h2>
+        <h2>{taskLength} {taskLength> 1?'Items': "Item"}</h2>
     </footer>
   )
 }
