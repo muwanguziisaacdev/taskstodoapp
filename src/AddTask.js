@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAdd } from '@fortawesome/free-solid-svg-icons'
 const ADDTASK = ( { add, setAdd, handleSubmit } ) => {
   return (
-    <form onSubmit= {(e)=>e.preventDefault} >
+    <form onSubmit= {(e)=>handleSubmit(e)} >
         <input 
         type="text" 
         placeholder='Add' 

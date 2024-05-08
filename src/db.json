@@ -1,18 +1,29 @@
-{ "items":[
+{
+  "items": [
     {
-        "id": 1,
-        "checked": false,
-        "task": "Wake Up"
+      "id": "1",
+      "checked": true,
+      "task": "Wake Up"
     },
     {
-        "id": 2,
-        "checked": false,
-        "task": "Pray"
+      "id": "2",
+      "checked": true,
+      "task": "Pray"
     },
     {
-        "id": 3,
-        "checked": false,
-        "task": "Bath"
+      "id": "3",
+      "checked": true,
+      "task": "Bath"
+    },
+    {
+      "id": "4",
+      "checked": true,
+      "task": "Code"
+    },
+    {
+      "id": "5",
+      "checked": true,
+      "task": "Work"
     }
-    ]
+  ]
 }
