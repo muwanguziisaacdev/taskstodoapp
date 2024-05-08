@@ -11,7 +11,8 @@ function App() {
   const [search, setSearch] = useState('');
   const [tasks, setTasks] = useState([]);
   const [fetchError, setFetchError] = useState(null);
-  const API_URL = 'http://localhost:3500/items'
+  const [isLoading, setIsLoading] = useState(true);
+  const API_URL = 'http://localhost:3500/itemss'
 //HANDLING THE DELETE AND THE CHECK TASKS 
 const handleDelete = (id)=>{
     const tasklist = tasks.filter((task)=>(task).id !==id ? task : 0);
@@ -26,16 +27,22 @@ useEffect(()=>{
   const fetchTasks = async() => {
     try {
       const response = await fetch(API_URL);
-      if(!response.ok) throw Error('Did not fetch the expected data');
+      if(!response.ok) throw Error('Reload to fetch the to sync with the database');
       const tasklist = await response.json();
       setTasks(tasklist)
+      setFetchError(null)
     }
     catch(err) {
       setFetchError(err.message);
     }
+    finally {
+      setIsLoading(false)
+    }
   } 
+  setTimeout(()=>{
+    (async()=> await fetchTasks())();
+  }, 2000)
   
-  (async()=> await fetchTasks())();
 }, [])
 // ADDING THE TASKS AND SEARCHING THE TASKS
 const handleAdd = (task)=>{
@@ -63,8 +70,9 @@ const handleSubmit = (e)=>{
     setSearch={setSearch}
     />
     <main>
-    {fetchError && <p>{fetchError}</p>};
-    {!fetchError && <CONTENT
+    {isLoading && <p className='loading '>Loading tasks............</p>}
+    {fetchError && <p className='fetcherror'>{fetchError}</p>}
+    {!fetchError && !isLoading && <CONTENT
     tasks = {tasks.filter(task => ((task.task).toLowerCase()).includes(search.toLowerCase()))} 
     handleCheck = {handleCheck}
     handleDelete = {handleDelete}

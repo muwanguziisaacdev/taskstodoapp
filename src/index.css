@@ -129,9 +129,16 @@ form input {
   top: 20%;
 }
 
+.loading, .fetcherror {
+  font-size: 2rem;
+  position: absolute;
+  top: 30%;
+  color: greenyellow;
+}
 
-
-
+.fetcherror {
+  color: red;
+}
 
 
 
