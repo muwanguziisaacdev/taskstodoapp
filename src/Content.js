@@ -5,7 +5,7 @@ import { faTrash} from '@fortawesome/free-solid-svg-icons';
 const CONTENT = ( {tasks, handleCheck, handleDelete}) => {
 
   return (
-    <main>
+    <>
         {tasks.length?
             <ul className='listtasks'>
                 {tasks.map((task)=>(
@@ -29,7 +29,7 @@ const CONTENT = ( {tasks, handleCheck, handleDelete}) => {
                 }
             </ul>: 
         <h1 className='no-items'>Empty</h1>}
-    </main>
+    </>
   )
 }
 

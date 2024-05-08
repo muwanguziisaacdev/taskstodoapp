@@ -82,7 +82,7 @@ li:last-child {
   font-size: 2rem;
   color: white;
 }
-.delete-icon:hover {
+.delete-icon:hover, .delete-icon:hover {
   color: rgba(255, 0, 0, 0.843);
 }
 .deleteButton {
